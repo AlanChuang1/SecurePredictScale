@@ -17,7 +17,7 @@ def is_anomaly(payload: dict) -> bool:
     return score < threshold
 
 # === Load DP-LSTM model ===
-query_params = {"hidden_size": 64, "num_layers": 2}  # match what you trained with
+query_params = {"hidden_size": 64, "num_layers": 2}  # match training parameters
 model = LSTMPredictor(input_size=1,
                       hidden_size=query_params["hidden_size"],
                       num_layers=query_params["num_layers"],
