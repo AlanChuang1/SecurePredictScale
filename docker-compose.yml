@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - JWT_SECRET=supersecret
+      - OPA_URL=http://opa:8181/v1/data/httpapi/authz/allow
+    depends_on:
+      - opa
+  opa:
+    image: openpolicyagent/opa:latest
+    command: ["run", "--server", "/policies"]
+    volumes:
+      - ./opa:/policies
+    ports:
+      - "8181:8181"
